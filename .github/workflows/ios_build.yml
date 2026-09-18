@@ -24,6 +24,15 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Generate Podfile via Simulator Build
+        run: flutter build ios --simulator --debug --no-codesign || true
+
+      - name: Inject Permissions and Re-install Pods
+        run: |
+          sed -i '' 's/flutter_additional_ios_build_settings(target)/flutter_additional_ios_build_settings(target)\n      config.build_settings["GCC_PREPROCESSOR_DEFINITIONS"] ||= ["$(inherited)", "PERMISSION_CAMERA=1", "PERMISSION_MICROPHONE=1"]/g' ios/Podfile
+          cd ios
+          pod install
+
       - name: Build unsigned iOS App
         run: flutter build ios --release --no-codesign
 
