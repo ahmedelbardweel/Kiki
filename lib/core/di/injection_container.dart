@@ -13,7 +13,7 @@ Future<void> initDI() async {
   // External
   final supabase = Supabase.instance.client;
   final googleSignIn = GoogleSignIn(
-    clientId: const String.fromEnvironment('IOS_CLIENT_ID', defaultValue: 'YOUR_IOS_CLIENT_ID.apps.googleusercontent.com'),
+    clientId: const String.fromEnvironment('IOS_CLIENT_ID', defaultValue: '638779791094-dqbujbtmkerdvsni581galdduscc32uc.apps.googleusercontent.com'),
     serverClientId: '638779791094-np42vq80lks1pk7nrg5iq10inktd1th7.apps.googleusercontent.com',
   );
 
