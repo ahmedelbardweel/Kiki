@@ -116,6 +116,7 @@ class CreatorStudioScreen extends StatelessWidget {
       final streamData = await supabase.from('streams').insert({
         'creator_id': userId,
         'title': 'My Awesome Live Stream',
+        'category': 'Just Chatting', // Default category
         'status': 'live',
       }).select().single();
       
