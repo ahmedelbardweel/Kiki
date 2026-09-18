@@ -1,16 +1,16 @@
-name: iOS Build (Simulator)
+name: iOS Build (IPA)
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  workflow_dispatch: # يسمح بتشغيل البناء يدوياً من واجهة GitHub
+  workflow_dispatch:
 
 jobs:
   build_ios:
     name: Build Flutter iOS
-    runs-on: macos-latest # نستخدم سيرفرات أبل (ماك) الخاصة بـ GitHub
+    runs-on: macos-latest
 
     steps:
       - name: Checkout repository
@@ -24,17 +24,18 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build iOS Simulator App
-        # نقوم بالبناء للمحاكي فقط لأن البناء لجهاز حقيقي يتطلب حساب مطور أبل مدفوع
-        run: flutter build ios --simulator --no-codesign
+      - name: Build unsigned iOS App
+        run: flutter build ios --release --no-codesign
 
-      - name: Compress App
+      - name: Package to IPA
         run: |
-          cd build/ios/iphonesimulator
-          zip -r KikiLive_iOS_Simulator.zip Runner.app
+          mkdir -p build/ios/iphoneos/Payload
+          mv build/ios/iphoneos/Runner.app build/ios/iphoneos/Payload/
+          cd build/ios/iphoneos
+          zip -r KikiLive_iOS_Unsigned.ipa Payload
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: KikiLive_iOS_Simulator
-          path: build/ios/iphonesimulator/KikiLive_iOS_Simulator.zip
+          name: KikiLive_iOS_Unsigned.ipa
+          path: build/ios/iphoneos/KikiLive_iOS_Unsigned.ipa

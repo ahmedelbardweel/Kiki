@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_design_system.dart';
 import '../../../core/utils/bottom_sheet_util.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'live_broadcast_screen.dart';
 
 class CreatorStudioScreen extends StatelessWidget {
   const CreatorStudioScreen({Key? key}) : super(key: key);
@@ -88,7 +90,7 @@ class CreatorStudioScreen extends StatelessWidget {
                           confirmText: 'Go Live',
                         ).then((confirmed) {
                           if (confirmed == true) {
-                            // Integrate WebRTC/RTMP publisher here
+                            _startLiveStream(context);
                           }
                         });
                       },
@@ -103,5 +105,33 @@ class CreatorStudioScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _startLiveStream(BuildContext context) async {
+    try {
+      final supabase = Supabase.instance.client;
+      final userId = supabase.auth.currentUser!.id;
+      
+      // Create stream record in Supabase
+      final streamData = await supabase.from('streams').insert({
+        'creator_id': userId,
+        'title': 'My Awesome Live Stream',
+        'status': 'live',
+      }).select().single();
+      
+      if (!context.mounted) return;
+      
+      // Navigate to broadcast screen
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => LiveBroadcastScreen(streamId: streamData['id']),
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to start stream: $e')),
+      );
+    }
   }
 }

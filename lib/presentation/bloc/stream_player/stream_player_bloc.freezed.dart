@@ -19,40 +19,59 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$StreamPlayerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String streamUrl) loadStream,
-    required TResult Function() play,
-    required TResult Function() pause,
+    required TResult Function(String channelName, ClientRoleType role)
+    joinStream,
+    required TResult Function() leaveStream,
+    required TResult Function() toggleMic,
+    required TResult Function() toggleCamera,
+    required TResult Function(int uid) remoteUserJoined,
+    required TResult Function(int uid) remoteUserOffline,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String streamUrl)? loadStream,
-    TResult? Function()? play,
-    TResult? Function()? pause,
+    TResult? Function(String channelName, ClientRoleType role)? joinStream,
+    TResult? Function()? leaveStream,
+    TResult? Function()? toggleMic,
+    TResult? Function()? toggleCamera,
+    TResult? Function(int uid)? remoteUserJoined,
+    TResult? Function(int uid)? remoteUserOffline,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String streamUrl)? loadStream,
-    TResult Function()? play,
-    TResult Function()? pause,
+    TResult Function(String channelName, ClientRoleType role)? joinStream,
+    TResult Function()? leaveStream,
+    TResult Function()? toggleMic,
+    TResult Function()? toggleCamera,
+    TResult Function(int uid)? remoteUserJoined,
+    TResult Function(int uid)? remoteUserOffline,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadStream value) loadStream,
-    required TResult Function(_Play value) play,
-    required TResult Function(_Pause value) pause,
+    required TResult Function(_JoinStream value) joinStream,
+    required TResult Function(_LeaveStream value) leaveStream,
+    required TResult Function(_ToggleMic value) toggleMic,
+    required TResult Function(_ToggleCamera value) toggleCamera,
+    required TResult Function(_RemoteUserJoined value) remoteUserJoined,
+    required TResult Function(_RemoteUserOffline value) remoteUserOffline,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadStream value)? loadStream,
-    TResult? Function(_Play value)? play,
-    TResult? Function(_Pause value)? pause,
+    TResult? Function(_JoinStream value)? joinStream,
+    TResult? Function(_LeaveStream value)? leaveStream,
+    TResult? Function(_ToggleMic value)? toggleMic,
+    TResult? Function(_ToggleCamera value)? toggleCamera,
+    TResult? Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult? Function(_RemoteUserOffline value)? remoteUserOffline,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadStream value)? loadStream,
-    TResult Function(_Play value)? play,
-    TResult Function(_Pause value)? pause,
+    TResult Function(_JoinStream value)? joinStream,
+    TResult Function(_LeaveStream value)? leaveStream,
+    TResult Function(_ToggleMic value)? toggleMic,
+    TResult Function(_ToggleCamera value)? toggleCamera,
+    TResult Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult Function(_RemoteUserOffline value)? remoteUserOffline,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -80,35 +99,39 @@ class _$StreamPlayerEventCopyWithImpl<$Res, $Val extends StreamPlayerEvent>
 }
 
 /// @nodoc
-abstract class _$$LoadStreamImplCopyWith<$Res> {
-  factory _$$LoadStreamImplCopyWith(
-    _$LoadStreamImpl value,
-    $Res Function(_$LoadStreamImpl) then,
-  ) = __$$LoadStreamImplCopyWithImpl<$Res>;
+abstract class _$$JoinStreamImplCopyWith<$Res> {
+  factory _$$JoinStreamImplCopyWith(
+    _$JoinStreamImpl value,
+    $Res Function(_$JoinStreamImpl) then,
+  ) = __$$JoinStreamImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String streamUrl});
+  $Res call({String channelName, ClientRoleType role});
 }
 
 /// @nodoc
-class __$$LoadStreamImplCopyWithImpl<$Res>
-    extends _$StreamPlayerEventCopyWithImpl<$Res, _$LoadStreamImpl>
-    implements _$$LoadStreamImplCopyWith<$Res> {
-  __$$LoadStreamImplCopyWithImpl(
-    _$LoadStreamImpl _value,
-    $Res Function(_$LoadStreamImpl) _then,
+class __$$JoinStreamImplCopyWithImpl<$Res>
+    extends _$StreamPlayerEventCopyWithImpl<$Res, _$JoinStreamImpl>
+    implements _$$JoinStreamImplCopyWith<$Res> {
+  __$$JoinStreamImplCopyWithImpl(
+    _$JoinStreamImpl _value,
+    $Res Function(_$JoinStreamImpl) _then,
   ) : super(_value, _then);
 
   /// Create a copy of StreamPlayerEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? streamUrl = null}) {
+  $Res call({Object? channelName = null, Object? role = null}) {
     return _then(
-      _$LoadStreamImpl(
-        null == streamUrl
-            ? _value.streamUrl
-            : streamUrl // ignore: cast_nullable_to_non_nullable
+      _$JoinStreamImpl(
+        channelName: null == channelName
+            ? _value.channelName
+            : channelName // ignore: cast_nullable_to_non_nullable
                   as String,
+        role: null == role
+            ? _value.role
+            : role // ignore: cast_nullable_to_non_nullable
+                  as ClientRoleType,
       ),
     );
   }
@@ -116,67 +139,80 @@ class __$$LoadStreamImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadStreamImpl implements _LoadStream {
-  const _$LoadStreamImpl(this.streamUrl);
+class _$JoinStreamImpl implements _JoinStream {
+  const _$JoinStreamImpl({required this.channelName, required this.role});
 
   @override
-  final String streamUrl;
+  final String channelName;
+  @override
+  final ClientRoleType role;
 
   @override
   String toString() {
-    return 'StreamPlayerEvent.loadStream(streamUrl: $streamUrl)';
+    return 'StreamPlayerEvent.joinStream(channelName: $channelName, role: $role)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadStreamImpl &&
-            (identical(other.streamUrl, streamUrl) ||
-                other.streamUrl == streamUrl));
+            other is _$JoinStreamImpl &&
+            (identical(other.channelName, channelName) ||
+                other.channelName == channelName) &&
+            (identical(other.role, role) || other.role == role));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, streamUrl);
+  int get hashCode => Object.hash(runtimeType, channelName, role);
 
   /// Create a copy of StreamPlayerEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadStreamImplCopyWith<_$LoadStreamImpl> get copyWith =>
-      __$$LoadStreamImplCopyWithImpl<_$LoadStreamImpl>(this, _$identity);
+  _$$JoinStreamImplCopyWith<_$JoinStreamImpl> get copyWith =>
+      __$$JoinStreamImplCopyWithImpl<_$JoinStreamImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String streamUrl) loadStream,
-    required TResult Function() play,
-    required TResult Function() pause,
+    required TResult Function(String channelName, ClientRoleType role)
+    joinStream,
+    required TResult Function() leaveStream,
+    required TResult Function() toggleMic,
+    required TResult Function() toggleCamera,
+    required TResult Function(int uid) remoteUserJoined,
+    required TResult Function(int uid) remoteUserOffline,
   }) {
-    return loadStream(streamUrl);
+    return joinStream(channelName, role);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String streamUrl)? loadStream,
-    TResult? Function()? play,
-    TResult? Function()? pause,
+    TResult? Function(String channelName, ClientRoleType role)? joinStream,
+    TResult? Function()? leaveStream,
+    TResult? Function()? toggleMic,
+    TResult? Function()? toggleCamera,
+    TResult? Function(int uid)? remoteUserJoined,
+    TResult? Function(int uid)? remoteUserOffline,
   }) {
-    return loadStream?.call(streamUrl);
+    return joinStream?.call(channelName, role);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String streamUrl)? loadStream,
-    TResult Function()? play,
-    TResult Function()? pause,
+    TResult Function(String channelName, ClientRoleType role)? joinStream,
+    TResult Function()? leaveStream,
+    TResult Function()? toggleMic,
+    TResult Function()? toggleCamera,
+    TResult Function(int uid)? remoteUserJoined,
+    TResult Function(int uid)? remoteUserOffline,
     required TResult orElse(),
   }) {
-    if (loadStream != null) {
-      return loadStream(streamUrl);
+    if (joinStream != null) {
+      return joinStream(channelName, role);
     }
     return orElse();
   }
@@ -184,176 +220,78 @@ class _$LoadStreamImpl implements _LoadStream {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadStream value) loadStream,
-    required TResult Function(_Play value) play,
-    required TResult Function(_Pause value) pause,
+    required TResult Function(_JoinStream value) joinStream,
+    required TResult Function(_LeaveStream value) leaveStream,
+    required TResult Function(_ToggleMic value) toggleMic,
+    required TResult Function(_ToggleCamera value) toggleCamera,
+    required TResult Function(_RemoteUserJoined value) remoteUserJoined,
+    required TResult Function(_RemoteUserOffline value) remoteUserOffline,
   }) {
-    return loadStream(this);
+    return joinStream(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadStream value)? loadStream,
-    TResult? Function(_Play value)? play,
-    TResult? Function(_Pause value)? pause,
+    TResult? Function(_JoinStream value)? joinStream,
+    TResult? Function(_LeaveStream value)? leaveStream,
+    TResult? Function(_ToggleMic value)? toggleMic,
+    TResult? Function(_ToggleCamera value)? toggleCamera,
+    TResult? Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult? Function(_RemoteUserOffline value)? remoteUserOffline,
   }) {
-    return loadStream?.call(this);
+    return joinStream?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadStream value)? loadStream,
-    TResult Function(_Play value)? play,
-    TResult Function(_Pause value)? pause,
+    TResult Function(_JoinStream value)? joinStream,
+    TResult Function(_LeaveStream value)? leaveStream,
+    TResult Function(_ToggleMic value)? toggleMic,
+    TResult Function(_ToggleCamera value)? toggleCamera,
+    TResult Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult Function(_RemoteUserOffline value)? remoteUserOffline,
     required TResult orElse(),
   }) {
-    if (loadStream != null) {
-      return loadStream(this);
+    if (joinStream != null) {
+      return joinStream(this);
     }
     return orElse();
   }
 }
 
-abstract class _LoadStream implements StreamPlayerEvent {
-  const factory _LoadStream(final String streamUrl) = _$LoadStreamImpl;
+abstract class _JoinStream implements StreamPlayerEvent {
+  const factory _JoinStream({
+    required final String channelName,
+    required final ClientRoleType role,
+  }) = _$JoinStreamImpl;
 
-  String get streamUrl;
+  String get channelName;
+  ClientRoleType get role;
 
   /// Create a copy of StreamPlayerEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadStreamImplCopyWith<_$LoadStreamImpl> get copyWith =>
+  _$$JoinStreamImplCopyWith<_$JoinStreamImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$PlayImplCopyWith<$Res> {
-  factory _$$PlayImplCopyWith(
-    _$PlayImpl value,
-    $Res Function(_$PlayImpl) then,
-  ) = __$$PlayImplCopyWithImpl<$Res>;
+abstract class _$$LeaveStreamImplCopyWith<$Res> {
+  factory _$$LeaveStreamImplCopyWith(
+    _$LeaveStreamImpl value,
+    $Res Function(_$LeaveStreamImpl) then,
+  ) = __$$LeaveStreamImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$PlayImplCopyWithImpl<$Res>
-    extends _$StreamPlayerEventCopyWithImpl<$Res, _$PlayImpl>
-    implements _$$PlayImplCopyWith<$Res> {
-  __$$PlayImplCopyWithImpl(_$PlayImpl _value, $Res Function(_$PlayImpl) _then)
-    : super(_value, _then);
-
-  /// Create a copy of StreamPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$PlayImpl implements _Play {
-  const _$PlayImpl();
-
-  @override
-  String toString() {
-    return 'StreamPlayerEvent.play()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PlayImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String streamUrl) loadStream,
-    required TResult Function() play,
-    required TResult Function() pause,
-  }) {
-    return play();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String streamUrl)? loadStream,
-    TResult? Function()? play,
-    TResult? Function()? pause,
-  }) {
-    return play?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String streamUrl)? loadStream,
-    TResult Function()? play,
-    TResult Function()? pause,
-    required TResult orElse(),
-  }) {
-    if (play != null) {
-      return play();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadStream value) loadStream,
-    required TResult Function(_Play value) play,
-    required TResult Function(_Pause value) pause,
-  }) {
-    return play(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadStream value)? loadStream,
-    TResult? Function(_Play value)? play,
-    TResult? Function(_Pause value)? pause,
-  }) {
-    return play?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadStream value)? loadStream,
-    TResult Function(_Play value)? play,
-    TResult Function(_Pause value)? pause,
-    required TResult orElse(),
-  }) {
-    if (play != null) {
-      return play(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Play implements StreamPlayerEvent {
-  const factory _Play() = _$PlayImpl;
-}
-
-/// @nodoc
-abstract class _$$PauseImplCopyWith<$Res> {
-  factory _$$PauseImplCopyWith(
-    _$PauseImpl value,
-    $Res Function(_$PauseImpl) then,
-  ) = __$$PauseImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$PauseImplCopyWithImpl<$Res>
-    extends _$StreamPlayerEventCopyWithImpl<$Res, _$PauseImpl>
-    implements _$$PauseImplCopyWith<$Res> {
-  __$$PauseImplCopyWithImpl(
-    _$PauseImpl _value,
-    $Res Function(_$PauseImpl) _then,
+class __$$LeaveStreamImplCopyWithImpl<$Res>
+    extends _$StreamPlayerEventCopyWithImpl<$Res, _$LeaveStreamImpl>
+    implements _$$LeaveStreamImplCopyWith<$Res> {
+  __$$LeaveStreamImplCopyWithImpl(
+    _$LeaveStreamImpl _value,
+    $Res Function(_$LeaveStreamImpl) _then,
   ) : super(_value, _then);
 
   /// Create a copy of StreamPlayerEvent
@@ -362,18 +300,18 @@ class __$$PauseImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PauseImpl implements _Pause {
-  const _$PauseImpl();
+class _$LeaveStreamImpl implements _LeaveStream {
+  const _$LeaveStreamImpl();
 
   @override
   String toString() {
-    return 'StreamPlayerEvent.pause()';
+    return 'StreamPlayerEvent.leaveStream()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PauseImpl);
+        (other.runtimeType == runtimeType && other is _$LeaveStreamImpl);
   }
 
   @override
@@ -382,33 +320,43 @@ class _$PauseImpl implements _Pause {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String streamUrl) loadStream,
-    required TResult Function() play,
-    required TResult Function() pause,
+    required TResult Function(String channelName, ClientRoleType role)
+    joinStream,
+    required TResult Function() leaveStream,
+    required TResult Function() toggleMic,
+    required TResult Function() toggleCamera,
+    required TResult Function(int uid) remoteUserJoined,
+    required TResult Function(int uid) remoteUserOffline,
   }) {
-    return pause();
+    return leaveStream();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String streamUrl)? loadStream,
-    TResult? Function()? play,
-    TResult? Function()? pause,
+    TResult? Function(String channelName, ClientRoleType role)? joinStream,
+    TResult? Function()? leaveStream,
+    TResult? Function()? toggleMic,
+    TResult? Function()? toggleCamera,
+    TResult? Function(int uid)? remoteUserJoined,
+    TResult? Function(int uid)? remoteUserOffline,
   }) {
-    return pause?.call();
+    return leaveStream?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String streamUrl)? loadStream,
-    TResult Function()? play,
-    TResult Function()? pause,
+    TResult Function(String channelName, ClientRoleType role)? joinStream,
+    TResult Function()? leaveStream,
+    TResult Function()? toggleMic,
+    TResult Function()? toggleCamera,
+    TResult Function(int uid)? remoteUserJoined,
+    TResult Function(int uid)? remoteUserOffline,
     required TResult orElse(),
   }) {
-    if (pause != null) {
-      return pause();
+    if (leaveStream != null) {
+      return leaveStream();
     }
     return orElse();
   }
@@ -416,40 +364,653 @@ class _$PauseImpl implements _Pause {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadStream value) loadStream,
-    required TResult Function(_Play value) play,
-    required TResult Function(_Pause value) pause,
+    required TResult Function(_JoinStream value) joinStream,
+    required TResult Function(_LeaveStream value) leaveStream,
+    required TResult Function(_ToggleMic value) toggleMic,
+    required TResult Function(_ToggleCamera value) toggleCamera,
+    required TResult Function(_RemoteUserJoined value) remoteUserJoined,
+    required TResult Function(_RemoteUserOffline value) remoteUserOffline,
   }) {
-    return pause(this);
+    return leaveStream(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadStream value)? loadStream,
-    TResult? Function(_Play value)? play,
-    TResult? Function(_Pause value)? pause,
+    TResult? Function(_JoinStream value)? joinStream,
+    TResult? Function(_LeaveStream value)? leaveStream,
+    TResult? Function(_ToggleMic value)? toggleMic,
+    TResult? Function(_ToggleCamera value)? toggleCamera,
+    TResult? Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult? Function(_RemoteUserOffline value)? remoteUserOffline,
   }) {
-    return pause?.call(this);
+    return leaveStream?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadStream value)? loadStream,
-    TResult Function(_Play value)? play,
-    TResult Function(_Pause value)? pause,
+    TResult Function(_JoinStream value)? joinStream,
+    TResult Function(_LeaveStream value)? leaveStream,
+    TResult Function(_ToggleMic value)? toggleMic,
+    TResult Function(_ToggleCamera value)? toggleCamera,
+    TResult Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult Function(_RemoteUserOffline value)? remoteUserOffline,
     required TResult orElse(),
   }) {
-    if (pause != null) {
-      return pause(this);
+    if (leaveStream != null) {
+      return leaveStream(this);
     }
     return orElse();
   }
 }
 
-abstract class _Pause implements StreamPlayerEvent {
-  const factory _Pause() = _$PauseImpl;
+abstract class _LeaveStream implements StreamPlayerEvent {
+  const factory _LeaveStream() = _$LeaveStreamImpl;
+}
+
+/// @nodoc
+abstract class _$$ToggleMicImplCopyWith<$Res> {
+  factory _$$ToggleMicImplCopyWith(
+    _$ToggleMicImpl value,
+    $Res Function(_$ToggleMicImpl) then,
+  ) = __$$ToggleMicImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ToggleMicImplCopyWithImpl<$Res>
+    extends _$StreamPlayerEventCopyWithImpl<$Res, _$ToggleMicImpl>
+    implements _$$ToggleMicImplCopyWith<$Res> {
+  __$$ToggleMicImplCopyWithImpl(
+    _$ToggleMicImpl _value,
+    $Res Function(_$ToggleMicImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of StreamPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ToggleMicImpl implements _ToggleMic {
+  const _$ToggleMicImpl();
+
+  @override
+  String toString() {
+    return 'StreamPlayerEvent.toggleMic()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ToggleMicImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String channelName, ClientRoleType role)
+    joinStream,
+    required TResult Function() leaveStream,
+    required TResult Function() toggleMic,
+    required TResult Function() toggleCamera,
+    required TResult Function(int uid) remoteUserJoined,
+    required TResult Function(int uid) remoteUserOffline,
+  }) {
+    return toggleMic();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String channelName, ClientRoleType role)? joinStream,
+    TResult? Function()? leaveStream,
+    TResult? Function()? toggleMic,
+    TResult? Function()? toggleCamera,
+    TResult? Function(int uid)? remoteUserJoined,
+    TResult? Function(int uid)? remoteUserOffline,
+  }) {
+    return toggleMic?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String channelName, ClientRoleType role)? joinStream,
+    TResult Function()? leaveStream,
+    TResult Function()? toggleMic,
+    TResult Function()? toggleCamera,
+    TResult Function(int uid)? remoteUserJoined,
+    TResult Function(int uid)? remoteUserOffline,
+    required TResult orElse(),
+  }) {
+    if (toggleMic != null) {
+      return toggleMic();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_JoinStream value) joinStream,
+    required TResult Function(_LeaveStream value) leaveStream,
+    required TResult Function(_ToggleMic value) toggleMic,
+    required TResult Function(_ToggleCamera value) toggleCamera,
+    required TResult Function(_RemoteUserJoined value) remoteUserJoined,
+    required TResult Function(_RemoteUserOffline value) remoteUserOffline,
+  }) {
+    return toggleMic(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_JoinStream value)? joinStream,
+    TResult? Function(_LeaveStream value)? leaveStream,
+    TResult? Function(_ToggleMic value)? toggleMic,
+    TResult? Function(_ToggleCamera value)? toggleCamera,
+    TResult? Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult? Function(_RemoteUserOffline value)? remoteUserOffline,
+  }) {
+    return toggleMic?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_JoinStream value)? joinStream,
+    TResult Function(_LeaveStream value)? leaveStream,
+    TResult Function(_ToggleMic value)? toggleMic,
+    TResult Function(_ToggleCamera value)? toggleCamera,
+    TResult Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult Function(_RemoteUserOffline value)? remoteUserOffline,
+    required TResult orElse(),
+  }) {
+    if (toggleMic != null) {
+      return toggleMic(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ToggleMic implements StreamPlayerEvent {
+  const factory _ToggleMic() = _$ToggleMicImpl;
+}
+
+/// @nodoc
+abstract class _$$ToggleCameraImplCopyWith<$Res> {
+  factory _$$ToggleCameraImplCopyWith(
+    _$ToggleCameraImpl value,
+    $Res Function(_$ToggleCameraImpl) then,
+  ) = __$$ToggleCameraImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ToggleCameraImplCopyWithImpl<$Res>
+    extends _$StreamPlayerEventCopyWithImpl<$Res, _$ToggleCameraImpl>
+    implements _$$ToggleCameraImplCopyWith<$Res> {
+  __$$ToggleCameraImplCopyWithImpl(
+    _$ToggleCameraImpl _value,
+    $Res Function(_$ToggleCameraImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of StreamPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ToggleCameraImpl implements _ToggleCamera {
+  const _$ToggleCameraImpl();
+
+  @override
+  String toString() {
+    return 'StreamPlayerEvent.toggleCamera()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ToggleCameraImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String channelName, ClientRoleType role)
+    joinStream,
+    required TResult Function() leaveStream,
+    required TResult Function() toggleMic,
+    required TResult Function() toggleCamera,
+    required TResult Function(int uid) remoteUserJoined,
+    required TResult Function(int uid) remoteUserOffline,
+  }) {
+    return toggleCamera();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String channelName, ClientRoleType role)? joinStream,
+    TResult? Function()? leaveStream,
+    TResult? Function()? toggleMic,
+    TResult? Function()? toggleCamera,
+    TResult? Function(int uid)? remoteUserJoined,
+    TResult? Function(int uid)? remoteUserOffline,
+  }) {
+    return toggleCamera?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String channelName, ClientRoleType role)? joinStream,
+    TResult Function()? leaveStream,
+    TResult Function()? toggleMic,
+    TResult Function()? toggleCamera,
+    TResult Function(int uid)? remoteUserJoined,
+    TResult Function(int uid)? remoteUserOffline,
+    required TResult orElse(),
+  }) {
+    if (toggleCamera != null) {
+      return toggleCamera();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_JoinStream value) joinStream,
+    required TResult Function(_LeaveStream value) leaveStream,
+    required TResult Function(_ToggleMic value) toggleMic,
+    required TResult Function(_ToggleCamera value) toggleCamera,
+    required TResult Function(_RemoteUserJoined value) remoteUserJoined,
+    required TResult Function(_RemoteUserOffline value) remoteUserOffline,
+  }) {
+    return toggleCamera(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_JoinStream value)? joinStream,
+    TResult? Function(_LeaveStream value)? leaveStream,
+    TResult? Function(_ToggleMic value)? toggleMic,
+    TResult? Function(_ToggleCamera value)? toggleCamera,
+    TResult? Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult? Function(_RemoteUserOffline value)? remoteUserOffline,
+  }) {
+    return toggleCamera?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_JoinStream value)? joinStream,
+    TResult Function(_LeaveStream value)? leaveStream,
+    TResult Function(_ToggleMic value)? toggleMic,
+    TResult Function(_ToggleCamera value)? toggleCamera,
+    TResult Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult Function(_RemoteUserOffline value)? remoteUserOffline,
+    required TResult orElse(),
+  }) {
+    if (toggleCamera != null) {
+      return toggleCamera(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ToggleCamera implements StreamPlayerEvent {
+  const factory _ToggleCamera() = _$ToggleCameraImpl;
+}
+
+/// @nodoc
+abstract class _$$RemoteUserJoinedImplCopyWith<$Res> {
+  factory _$$RemoteUserJoinedImplCopyWith(
+    _$RemoteUserJoinedImpl value,
+    $Res Function(_$RemoteUserJoinedImpl) then,
+  ) = __$$RemoteUserJoinedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int uid});
+}
+
+/// @nodoc
+class __$$RemoteUserJoinedImplCopyWithImpl<$Res>
+    extends _$StreamPlayerEventCopyWithImpl<$Res, _$RemoteUserJoinedImpl>
+    implements _$$RemoteUserJoinedImplCopyWith<$Res> {
+  __$$RemoteUserJoinedImplCopyWithImpl(
+    _$RemoteUserJoinedImpl _value,
+    $Res Function(_$RemoteUserJoinedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of StreamPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? uid = null}) {
+    return _then(
+      _$RemoteUserJoinedImpl(
+        null == uid
+            ? _value.uid
+            : uid // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$RemoteUserJoinedImpl implements _RemoteUserJoined {
+  const _$RemoteUserJoinedImpl(this.uid);
+
+  @override
+  final int uid;
+
+  @override
+  String toString() {
+    return 'StreamPlayerEvent.remoteUserJoined(uid: $uid)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoteUserJoinedImpl &&
+            (identical(other.uid, uid) || other.uid == uid));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, uid);
+
+  /// Create a copy of StreamPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoteUserJoinedImplCopyWith<_$RemoteUserJoinedImpl> get copyWith =>
+      __$$RemoteUserJoinedImplCopyWithImpl<_$RemoteUserJoinedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String channelName, ClientRoleType role)
+    joinStream,
+    required TResult Function() leaveStream,
+    required TResult Function() toggleMic,
+    required TResult Function() toggleCamera,
+    required TResult Function(int uid) remoteUserJoined,
+    required TResult Function(int uid) remoteUserOffline,
+  }) {
+    return remoteUserJoined(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String channelName, ClientRoleType role)? joinStream,
+    TResult? Function()? leaveStream,
+    TResult? Function()? toggleMic,
+    TResult? Function()? toggleCamera,
+    TResult? Function(int uid)? remoteUserJoined,
+    TResult? Function(int uid)? remoteUserOffline,
+  }) {
+    return remoteUserJoined?.call(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String channelName, ClientRoleType role)? joinStream,
+    TResult Function()? leaveStream,
+    TResult Function()? toggleMic,
+    TResult Function()? toggleCamera,
+    TResult Function(int uid)? remoteUserJoined,
+    TResult Function(int uid)? remoteUserOffline,
+    required TResult orElse(),
+  }) {
+    if (remoteUserJoined != null) {
+      return remoteUserJoined(uid);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_JoinStream value) joinStream,
+    required TResult Function(_LeaveStream value) leaveStream,
+    required TResult Function(_ToggleMic value) toggleMic,
+    required TResult Function(_ToggleCamera value) toggleCamera,
+    required TResult Function(_RemoteUserJoined value) remoteUserJoined,
+    required TResult Function(_RemoteUserOffline value) remoteUserOffline,
+  }) {
+    return remoteUserJoined(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_JoinStream value)? joinStream,
+    TResult? Function(_LeaveStream value)? leaveStream,
+    TResult? Function(_ToggleMic value)? toggleMic,
+    TResult? Function(_ToggleCamera value)? toggleCamera,
+    TResult? Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult? Function(_RemoteUserOffline value)? remoteUserOffline,
+  }) {
+    return remoteUserJoined?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_JoinStream value)? joinStream,
+    TResult Function(_LeaveStream value)? leaveStream,
+    TResult Function(_ToggleMic value)? toggleMic,
+    TResult Function(_ToggleCamera value)? toggleCamera,
+    TResult Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult Function(_RemoteUserOffline value)? remoteUserOffline,
+    required TResult orElse(),
+  }) {
+    if (remoteUserJoined != null) {
+      return remoteUserJoined(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoteUserJoined implements StreamPlayerEvent {
+  const factory _RemoteUserJoined(final int uid) = _$RemoteUserJoinedImpl;
+
+  int get uid;
+
+  /// Create a copy of StreamPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RemoteUserJoinedImplCopyWith<_$RemoteUserJoinedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RemoteUserOfflineImplCopyWith<$Res> {
+  factory _$$RemoteUserOfflineImplCopyWith(
+    _$RemoteUserOfflineImpl value,
+    $Res Function(_$RemoteUserOfflineImpl) then,
+  ) = __$$RemoteUserOfflineImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int uid});
+}
+
+/// @nodoc
+class __$$RemoteUserOfflineImplCopyWithImpl<$Res>
+    extends _$StreamPlayerEventCopyWithImpl<$Res, _$RemoteUserOfflineImpl>
+    implements _$$RemoteUserOfflineImplCopyWith<$Res> {
+  __$$RemoteUserOfflineImplCopyWithImpl(
+    _$RemoteUserOfflineImpl _value,
+    $Res Function(_$RemoteUserOfflineImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of StreamPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? uid = null}) {
+    return _then(
+      _$RemoteUserOfflineImpl(
+        null == uid
+            ? _value.uid
+            : uid // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$RemoteUserOfflineImpl implements _RemoteUserOffline {
+  const _$RemoteUserOfflineImpl(this.uid);
+
+  @override
+  final int uid;
+
+  @override
+  String toString() {
+    return 'StreamPlayerEvent.remoteUserOffline(uid: $uid)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoteUserOfflineImpl &&
+            (identical(other.uid, uid) || other.uid == uid));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, uid);
+
+  /// Create a copy of StreamPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoteUserOfflineImplCopyWith<_$RemoteUserOfflineImpl> get copyWith =>
+      __$$RemoteUserOfflineImplCopyWithImpl<_$RemoteUserOfflineImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String channelName, ClientRoleType role)
+    joinStream,
+    required TResult Function() leaveStream,
+    required TResult Function() toggleMic,
+    required TResult Function() toggleCamera,
+    required TResult Function(int uid) remoteUserJoined,
+    required TResult Function(int uid) remoteUserOffline,
+  }) {
+    return remoteUserOffline(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String channelName, ClientRoleType role)? joinStream,
+    TResult? Function()? leaveStream,
+    TResult? Function()? toggleMic,
+    TResult? Function()? toggleCamera,
+    TResult? Function(int uid)? remoteUserJoined,
+    TResult? Function(int uid)? remoteUserOffline,
+  }) {
+    return remoteUserOffline?.call(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String channelName, ClientRoleType role)? joinStream,
+    TResult Function()? leaveStream,
+    TResult Function()? toggleMic,
+    TResult Function()? toggleCamera,
+    TResult Function(int uid)? remoteUserJoined,
+    TResult Function(int uid)? remoteUserOffline,
+    required TResult orElse(),
+  }) {
+    if (remoteUserOffline != null) {
+      return remoteUserOffline(uid);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_JoinStream value) joinStream,
+    required TResult Function(_LeaveStream value) leaveStream,
+    required TResult Function(_ToggleMic value) toggleMic,
+    required TResult Function(_ToggleCamera value) toggleCamera,
+    required TResult Function(_RemoteUserJoined value) remoteUserJoined,
+    required TResult Function(_RemoteUserOffline value) remoteUserOffline,
+  }) {
+    return remoteUserOffline(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_JoinStream value)? joinStream,
+    TResult? Function(_LeaveStream value)? leaveStream,
+    TResult? Function(_ToggleMic value)? toggleMic,
+    TResult? Function(_ToggleCamera value)? toggleCamera,
+    TResult? Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult? Function(_RemoteUserOffline value)? remoteUserOffline,
+  }) {
+    return remoteUserOffline?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_JoinStream value)? joinStream,
+    TResult Function(_LeaveStream value)? leaveStream,
+    TResult Function(_ToggleMic value)? toggleMic,
+    TResult Function(_ToggleCamera value)? toggleCamera,
+    TResult Function(_RemoteUserJoined value)? remoteUserJoined,
+    TResult Function(_RemoteUserOffline value)? remoteUserOffline,
+    required TResult orElse(),
+  }) {
+    if (remoteUserOffline != null) {
+      return remoteUserOffline(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoteUserOffline implements StreamPlayerEvent {
+  const factory _RemoteUserOffline(final int uid) = _$RemoteUserOfflineImpl;
+
+  int get uid;
+
+  /// Create a copy of StreamPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RemoteUserOfflineImplCopyWith<_$RemoteUserOfflineImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -458,24 +1019,42 @@ mixin _$StreamPlayerState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() playing,
-    required TResult Function() paused,
+    required TResult Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )
+    active,
     required TResult Function(String message) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? playing,
-    TResult? Function()? paused,
+    TResult? Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )?
+    active,
     TResult? Function(String message)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? playing,
-    TResult Function()? paused,
+    TResult Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )?
+    active,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -483,24 +1062,21 @@ mixin _$StreamPlayerState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Playing value) playing,
-    required TResult Function(_Paused value) paused,
+    required TResult Function(_Active value) active,
     required TResult Function(_Error value) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Playing value)? playing,
-    TResult? Function(_Paused value)? paused,
+    TResult? Function(_Active value)? active,
     TResult? Function(_Error value)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Playing value)? playing,
-    TResult Function(_Paused value)? paused,
+    TResult Function(_Active value)? active,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -573,8 +1149,14 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() playing,
-    required TResult Function() paused,
+    required TResult Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )
+    active,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -585,8 +1167,14 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? playing,
-    TResult? Function()? paused,
+    TResult? Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )?
+    active,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -597,8 +1185,14 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? playing,
-    TResult Function()? paused,
+    TResult Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )?
+    active,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -613,8 +1207,7 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Playing value) playing,
-    required TResult Function(_Paused value) paused,
+    required TResult Function(_Active value) active,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -625,8 +1218,7 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Playing value)? playing,
-    TResult? Function(_Paused value)? paused,
+    TResult? Function(_Active value)? active,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -637,8 +1229,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Playing value)? playing,
-    TResult Function(_Paused value)? paused,
+    TResult Function(_Active value)? active,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -698,8 +1289,14 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() playing,
-    required TResult Function() paused,
+    required TResult Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )
+    active,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -710,8 +1307,14 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? playing,
-    TResult? Function()? paused,
+    TResult? Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )?
+    active,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -722,8 +1325,14 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? playing,
-    TResult Function()? paused,
+    TResult Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )?
+    active,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -738,8 +1347,7 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Playing value) playing,
-    required TResult Function(_Paused value) paused,
+    required TResult Function(_Active value) active,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -750,8 +1358,7 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Playing value)? playing,
-    TResult? Function(_Paused value)? paused,
+    TResult? Function(_Active value)? active,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -762,8 +1369,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Playing value)? playing,
-    TResult Function(_Paused value)? paused,
+    TResult Function(_Active value)? active,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -779,55 +1385,147 @@ abstract class _Loading implements StreamPlayerState {
 }
 
 /// @nodoc
-abstract class _$$PlayingImplCopyWith<$Res> {
-  factory _$$PlayingImplCopyWith(
-    _$PlayingImpl value,
-    $Res Function(_$PlayingImpl) then,
-  ) = __$$PlayingImplCopyWithImpl<$Res>;
+abstract class _$$ActiveImplCopyWith<$Res> {
+  factory _$$ActiveImplCopyWith(
+    _$ActiveImpl value,
+    $Res Function(_$ActiveImpl) then,
+  ) = __$$ActiveImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({
+    String channelName,
+    ClientRoleType role,
+    bool isMicEnabled,
+    bool isCameraEnabled,
+    int? remoteUid,
+  });
 }
 
 /// @nodoc
-class __$$PlayingImplCopyWithImpl<$Res>
-    extends _$StreamPlayerStateCopyWithImpl<$Res, _$PlayingImpl>
-    implements _$$PlayingImplCopyWith<$Res> {
-  __$$PlayingImplCopyWithImpl(
-    _$PlayingImpl _value,
-    $Res Function(_$PlayingImpl) _then,
+class __$$ActiveImplCopyWithImpl<$Res>
+    extends _$StreamPlayerStateCopyWithImpl<$Res, _$ActiveImpl>
+    implements _$$ActiveImplCopyWith<$Res> {
+  __$$ActiveImplCopyWithImpl(
+    _$ActiveImpl _value,
+    $Res Function(_$ActiveImpl) _then,
   ) : super(_value, _then);
 
   /// Create a copy of StreamPlayerState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? channelName = null,
+    Object? role = null,
+    Object? isMicEnabled = null,
+    Object? isCameraEnabled = null,
+    Object? remoteUid = freezed,
+  }) {
+    return _then(
+      _$ActiveImpl(
+        channelName: null == channelName
+            ? _value.channelName
+            : channelName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        role: null == role
+            ? _value.role
+            : role // ignore: cast_nullable_to_non_nullable
+                  as ClientRoleType,
+        isMicEnabled: null == isMicEnabled
+            ? _value.isMicEnabled
+            : isMicEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isCameraEnabled: null == isCameraEnabled
+            ? _value.isCameraEnabled
+            : isCameraEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        remoteUid: freezed == remoteUid
+            ? _value.remoteUid
+            : remoteUid // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
+  }
 }
 
 /// @nodoc
 
-class _$PlayingImpl implements _Playing {
-  const _$PlayingImpl();
+class _$ActiveImpl implements _Active {
+  const _$ActiveImpl({
+    required this.channelName,
+    required this.role,
+    this.isMicEnabled = true,
+    this.isCameraEnabled = true,
+    this.remoteUid,
+  });
+
+  @override
+  final String channelName;
+  @override
+  final ClientRoleType role;
+  @override
+  @JsonKey()
+  final bool isMicEnabled;
+  @override
+  @JsonKey()
+  final bool isCameraEnabled;
+  @override
+  final int? remoteUid;
 
   @override
   String toString() {
-    return 'StreamPlayerState.playing()';
+    return 'StreamPlayerState.active(channelName: $channelName, role: $role, isMicEnabled: $isMicEnabled, isCameraEnabled: $isCameraEnabled, remoteUid: $remoteUid)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PlayingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ActiveImpl &&
+            (identical(other.channelName, channelName) ||
+                other.channelName == channelName) &&
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.isMicEnabled, isMicEnabled) ||
+                other.isMicEnabled == isMicEnabled) &&
+            (identical(other.isCameraEnabled, isCameraEnabled) ||
+                other.isCameraEnabled == isCameraEnabled) &&
+            (identical(other.remoteUid, remoteUid) ||
+                other.remoteUid == remoteUid));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+    runtimeType,
+    channelName,
+    role,
+    isMicEnabled,
+    isCameraEnabled,
+    remoteUid,
+  );
+
+  /// Create a copy of StreamPlayerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ActiveImplCopyWith<_$ActiveImpl> get copyWith =>
+      __$$ActiveImplCopyWithImpl<_$ActiveImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() playing,
-    required TResult Function() paused,
+    required TResult Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )
+    active,
     required TResult Function(String message) error,
   }) {
-    return playing();
+    return active(channelName, role, isMicEnabled, isCameraEnabled, remoteUid);
   }
 
   @override
@@ -835,11 +1533,23 @@ class _$PlayingImpl implements _Playing {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? playing,
-    TResult? Function()? paused,
+    TResult? Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )?
+    active,
     TResult? Function(String message)? error,
   }) {
-    return playing?.call();
+    return active?.call(
+      channelName,
+      role,
+      isMicEnabled,
+      isCameraEnabled,
+      remoteUid,
+    );
   }
 
   @override
@@ -847,13 +1557,25 @@ class _$PlayingImpl implements _Playing {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? playing,
-    TResult Function()? paused,
+    TResult Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )?
+    active,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
-    if (playing != null) {
-      return playing();
+    if (active != null) {
+      return active(
+        channelName,
+        role,
+        isMicEnabled,
+        isCameraEnabled,
+        remoteUid,
+      );
     }
     return orElse();
   }
@@ -863,11 +1585,10 @@ class _$PlayingImpl implements _Playing {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Playing value) playing,
-    required TResult Function(_Paused value) paused,
+    required TResult Function(_Active value) active,
     required TResult Function(_Error value) error,
   }) {
-    return playing(this);
+    return active(this);
   }
 
   @override
@@ -875,11 +1596,10 @@ class _$PlayingImpl implements _Playing {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Playing value)? playing,
-    TResult? Function(_Paused value)? paused,
+    TResult? Function(_Active value)? active,
     TResult? Function(_Error value)? error,
   }) {
-    return playing?.call(this);
+    return active?.call(this);
   }
 
   @override
@@ -887,145 +1607,37 @@ class _$PlayingImpl implements _Playing {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Playing value)? playing,
-    TResult Function(_Paused value)? paused,
+    TResult Function(_Active value)? active,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (playing != null) {
-      return playing(this);
+    if (active != null) {
+      return active(this);
     }
     return orElse();
   }
 }
 
-abstract class _Playing implements StreamPlayerState {
-  const factory _Playing() = _$PlayingImpl;
-}
+abstract class _Active implements StreamPlayerState {
+  const factory _Active({
+    required final String channelName,
+    required final ClientRoleType role,
+    final bool isMicEnabled,
+    final bool isCameraEnabled,
+    final int? remoteUid,
+  }) = _$ActiveImpl;
 
-/// @nodoc
-abstract class _$$PausedImplCopyWith<$Res> {
-  factory _$$PausedImplCopyWith(
-    _$PausedImpl value,
-    $Res Function(_$PausedImpl) then,
-  ) = __$$PausedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$PausedImplCopyWithImpl<$Res>
-    extends _$StreamPlayerStateCopyWithImpl<$Res, _$PausedImpl>
-    implements _$$PausedImplCopyWith<$Res> {
-  __$$PausedImplCopyWithImpl(
-    _$PausedImpl _value,
-    $Res Function(_$PausedImpl) _then,
-  ) : super(_value, _then);
+  String get channelName;
+  ClientRoleType get role;
+  bool get isMicEnabled;
+  bool get isCameraEnabled;
+  int? get remoteUid;
 
   /// Create a copy of StreamPlayerState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$PausedImpl implements _Paused {
-  const _$PausedImpl();
-
-  @override
-  String toString() {
-    return 'StreamPlayerState.paused()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PausedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() playing,
-    required TResult Function() paused,
-    required TResult Function(String message) error,
-  }) {
-    return paused();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? playing,
-    TResult? Function()? paused,
-    TResult? Function(String message)? error,
-  }) {
-    return paused?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? playing,
-    TResult Function()? paused,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (paused != null) {
-      return paused();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Playing value) playing,
-    required TResult Function(_Paused value) paused,
-    required TResult Function(_Error value) error,
-  }) {
-    return paused(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Playing value)? playing,
-    TResult? Function(_Paused value)? paused,
-    TResult? Function(_Error value)? error,
-  }) {
-    return paused?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Playing value)? playing,
-    TResult Function(_Paused value)? paused,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (paused != null) {
-      return paused(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Paused implements StreamPlayerState {
-  const factory _Paused() = _$PausedImpl;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ActiveImplCopyWith<_$ActiveImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1100,8 +1712,14 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() playing,
-    required TResult Function() paused,
+    required TResult Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )
+    active,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -1112,8 +1730,14 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? playing,
-    TResult? Function()? paused,
+    TResult? Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )?
+    active,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -1124,8 +1748,14 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? playing,
-    TResult Function()? paused,
+    TResult Function(
+      String channelName,
+      ClientRoleType role,
+      bool isMicEnabled,
+      bool isCameraEnabled,
+      int? remoteUid,
+    )?
+    active,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1140,8 +1770,7 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Playing value) playing,
-    required TResult Function(_Paused value) paused,
+    required TResult Function(_Active value) active,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -1152,8 +1781,7 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Playing value)? playing,
-    TResult? Function(_Paused value)? paused,
+    TResult? Function(_Active value)? active,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -1164,8 +1792,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Playing value)? playing,
-    TResult Function(_Paused value)? paused,
+    TResult Function(_Active value)? active,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

@@ -95,7 +95,6 @@ class HomeScreen extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => const LiveStreamPlayerScreen(
-              streamUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8', // Mock HLS
               streamId: 'test_stream_123',
             ),
           ),
