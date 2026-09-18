@@ -1,0 +1,40 @@
+name: iOS Build (Simulator)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: # يسمح بتشغيل البناء يدوياً من واجهة GitHub
+
+jobs:
+  build_ios:
+    name: Build Flutter iOS
+    runs-on: macos-latest # نستخدم سيرفرات أبل (ماك) الخاصة بـ GitHub
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build iOS Simulator App
+        # نقوم بالبناء للمحاكي فقط لأن البناء لجهاز حقيقي يتطلب حساب مطور أبل مدفوع
+        run: flutter build ios --simulator --no-codesign
+
+      - name: Compress App
+        run: |
+          cd build/ios/iphonesimulator
+          zip -r KikiLive_iOS_Simulator.zip Runner.app
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: KikiLive_iOS_Simulator
+          path: build/ios/iphonesimulator/KikiLive_iOS_Simulator.zip
